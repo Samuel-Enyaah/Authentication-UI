@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In | Wilgram</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #dfe0f7 0%, #edeeff 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            display: flex;
+            max-width: 1100px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 1, 58, 0.15);
+        }
+        
+        .image-section {
+            flex: 1;
+            background: linear-gradient(135deg, #5f47ff 0%, #8a7dff 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .image-content {
+            text-align: center;
+            z-index: 2;
+        }
+        
+        .image-section h1 {
+            font-size: 32px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .image-section p {
+            font-size: 16px;
+            opacity: 0.9;
+            max-width: 300px;
+            margin: 0 auto 25px;
+        }
+        
+        .img-box {
+            width: 100%;
+            max-width: 350px;
+            margin: 20px auto;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .img-box img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .img-box:hover img {
+            transform: scale(1.05);
+        }
+        
+        .features {
+            list-style: none;
+            margin-top: 30px;
+            text-align: left;
+        }
+        
+        .features li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .features i {
+            margin-right: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .form-section {
+            flex: 1;
+            padding: 50px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .logo {
+            text-align: center;
+            margin-bottom: 10px;
+            color: #5f47ff;
+            font-weight: 700;
+            font-size: 24px;
+            letter-spacing: 1px;
+        }
+        
+        .form-outline {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        h2 {
+            color: #00013a;
+            font-weight: 700;
+            font-size: 28px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .form-items {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .input-group {
+            position: relative;
+        }
+        
+        .input-group i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #5f47ff;
+        }
+        
+        .form-item-input {
+            height: 50px;
+            width: 100%;
+            padding: 15px 15px 15px 45px;
+            border-radius: 10px;
+            outline: none;
+            border: 1px solid #d4d3ff;
+            color: #051b70;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .form-item-input:focus {
+            border-color: #5f47ff;
+            box-shadow: 0 0 0 3px rgba(95, 71, 255, 0.2);
+        }
+        
+        .action {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: #555;
+        }
+        
+        .action a {
+            color: #5f47ff;
+            transition: color 0.3s;
+        }
+        
+        .action a:hover {
+            color: #4a36d6;
+            text-decoration: underline;
+        }
+        
+        .form-item-submit {
+            height: 50px;
+            width: 100%;
+            border-radius: 10px;
+            outline: none;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            background: linear-gradient(to right, #5f47ff, #8a7dff);
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(95, 71, 255, 0.3);
+        }
+        
+        .form-item-submit:hover {
+            background: linear-gradient(to right, #4a36d6, #7265ff);
+            transform: translateY(-2px);
+            box-shadow: 0 7px 20px rgba(95, 71, 255, 0.4);
+        }
+        
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            color: #777;
+        }
+        
+        .divider::before,
+        .divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background-color: #ddd;
+        }
+        
+        .divider span {
+            padding: 0 15px;
+            font-size: 14px;
+        }
+        
+        .google-btn {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            justify-content: center;
+            width: 100%;
+            font-size: 16px;
+        }
+        
+        .google-btn img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+        
+        .google-btn:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-color: #bbb;
+            transform: translateY(-2px);
+        }
+        
+        .signup-text {
+            text-align: center;
+            margin-top: 25px;
+            color: #555;
+        }
+        
+        .signup-text a {
+            color: #5f47ff;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        .signup-text a:hover {
+            color: #4a36d6;
+            text-decoration: underline;
+        }
+        
+        .circle-1, .circle-2 {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .circle-1 {
+            width: 250px;
+            height: 250px;
+            top: -50px;
+            left: -50px;
+        }
+        
+        .circle-2 {
+            width: 150px;
+            height: 150px;
+            bottom: -50px;
+            right: -50px;
+        }
+        
+        @media (max-width: 900px) {
+            .container {
+                flex-direction: column;
+                max-width: 500px;
+            }
+            
+            .image-section {
+                padding: 30px 20px;
+            }
+            
+            .img-box {
+                max-width: 280px;
+            }
+            
+            .form-section {
+                padding: 40px 30px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .action {
+                flex-direction: column;
+                gap: 10px;
+                align-items: flex-start;
+            }
+            
+            .action a {
+                align-self: flex-end;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="image-section">
+            <div class="circle-1"></div>
+            <div class="circle-2"></div>
+            <div class="image-content">
+                <h1>Welcome to Wilgram</h1>
+                <p>Join our community and explore a world of opportunities</p>
+                <div class="img-box">
+                    <img src="https://images.unsplash.com/photo-1611605698335-8b1569810432?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80" alt="Wilgram Illustration">
+                </div>
+                <ul class="features">
+                    <li><i class="fas fa-check"></i> Secure & reliable platform</li>
+                    <li><i class="fas fa-check"></i> Connect with professionals</li>
+                    <li><i class="fas fa-check"></i> Advanced collaboration tools</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="form-section">
+            <div class="form-outline">
+                <div class="logo">WILGRAM</div>
+                <h2>Log In to Your Account</h2>
+                <form action="" class="form-items">
+                    <div class="input-group">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" placeholder="Email Address" class="form-item-input" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="Password" class="form-item-input" required>
+                    </div>
+                    
+                    <div class="action">
+                        <label>
+                            <input type="checkbox" name="remember"> Remember Me
+                        </label>
+                        <a href="#">Forgot password?</a>
+                    </div>
+                    
+                    <button type="submit" class="form-item-submit">Log In</button>
+                    
+                    <div class="divider">
+                        <span>Or continue with</span>
+                    </div>
+                    
+                    <button type="button" class="google-btn">
+                        <img src="https://www.google.com/favicon.ico" alt="Google Icon">
+                        <span>Google</span>
+                    </button>
+                    
+                    <p class="signup-text">Don't have an account? <a href="#">Sign Up</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple animation for input fields
+        document.querySelectorAll('.form-item-input').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.classList.add('focused');
+            });
+            
+            input.addEventListener('blur', function() {
+                if (this.value === '') {
+                    this.parentElement.classList.remove('focused');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
